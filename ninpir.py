@@ -1,11 +1,28 @@
 import random
 
+ninja_names = ['Fujibayashi Nagato', 'Momochi Sandayu', 'Ishikawa Goemon', 'Hattori Hanzo', 'Mochizuki Chiyome', 'Fuma Kotaro', 'Jinichi Kawakami',
+'Joe Musashi', 'Ryu Hayabusa', 'Stephen Hayes']
+
+pirate_name = ['Long John Silver', 'Redbeard', 'Blackbeard', 'Francis Drake', 'Samuel Bellamy', 'Ching Shih',
+'Bartholomew Roberts', 'Captain Kidd', 'Henry Morgan', 'Calico Jack']
+
+pirate_weapons = ['cutlass', 'saber', 'dagger', 'axe']
+ninja_weapons = ['ninjato', 'katana', 'yari', 'tanto']
+
+pirate_ranks = ['pirate captain', 'legend of the seas', 'dread pirate', 'scourge of the seven seas']
+ninja_ranks = ['ninja master', 'mystical ninja', 'ninja sensei', 'ninja assassin']
+
+sizes = ['small', 'medium', 'large']
+
+
 class Ninja:
     def __init__(self, name, weapon, rank, size):
         self.name = name
         self.weapon = weapon
         self.rank = rank
         self.size = size
+        is_dead = False 
+        health_points = 10
     
     def __repr__(self) -> str:
         return "This ninja's name is " + self.name + " and they are armed with a " + self.weapon + ". They hold the rank of " + self.rank + '.'
@@ -29,6 +46,8 @@ class Pirate:
         self.weapon = weapon
         self.rank = rank
         self.size = size
+        is_dead = False
+        health_points = 10
     
     def __repr__(self) -> str:
         return "This pirate's name is " + self.name + " and they are armed with a " + self.weapon + ". They hold the rank of " + self.rank + '.'
@@ -47,16 +66,15 @@ class Pirate:
         print(self.name + "fired a shot!")
 
 
-ninja_one = Ninja('Hitori Hanzo', 'ninjato', 'ninja master', 'medium')
+def random_picker(list):
+    return list[random.randint(0, len(list) - 1)]
 
-ninja_one.be_stealthy()
+def ninja_generator():
+    return Ninja(random_picker(ninja_names), random_picker(ninja_weapons), random_picker(ninja_ranks), random_picker(sizes))
+
+ninja_one = ninja_generator()
+
 print(ninja_one.__repr__())
-
-pirate_one = Pirate('Long John Silver', 'cutlass', 'pirate captain', 'medium')
-
-pirate_one.say_pirate_stuff()
-print(pirate_one.__repr__())
-
 
 
     
