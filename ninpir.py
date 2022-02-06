@@ -21,6 +21,7 @@ class Ninja:
         self.weapon = weapon
         self.rank = rank
         self.size = size
+        engaged_in_battle = False 
         is_dead = False 
         health_points = 10
     
@@ -32,11 +33,22 @@ class Ninja:
         print(self.name + " is " + stealthy_behaviour[random.randint(0, len(stealthy_behaviour) - 1)])
 
     def low_attack(self, opponent):
-        (self.name + " attacks " + opponent + "low with a " + self.weapon + "!")
+        print(self.name + " attacks " + opponent + " low with a " + self.weapon + "!")
+
     def high_attack(self, opponent):
-        print(self.name + " attacks " +  opponent + "high with a " + self.weapon + "!")
+            print(self.name + " attacks " +  opponent + " high with a " + self.weapon + "!")
+
     def throw_a_ninja_star(self, opponent):
-        (self.name + " throws a ninja star at " + opponent + "!")
+            print(self.name + " throws a ninja star at " + opponent + "!")
+
+    def low_block(self, opponent):
+            print(self.name + " blocks " + opponent + " low with their " + self.weapon + "!")
+
+    def high_block(self, opponent):  
+            print(self.name + " blocks " + opponent + " high with their " + self.weapon + "!")
+
+    
+
     
     
 class Pirate:
@@ -46,6 +58,7 @@ class Pirate:
         self.rank = rank
         self.size = size
         is_dead = False
+        engaged_in_battle = False
         health_points = 10
     
     def __repr__(self) -> str:
@@ -56,14 +69,20 @@ class Pirate:
         print(self.name + " yells " + '"' + pirate_stuff[random.randint(0, len(pirate_stuff) - 1)] + '"')
 
     def low_attack(self, opponent):
-        print(self.name + " attacks " + opponent + "low with a " + self.weapon + "!")
+            print(self.name + " attacks " + opponent + " low with a " + self.weapon + "!")
     
     def high_attack(self, opponent):
-        print(self.name + " attacks " +  opponent + "high with a " + self.weapon + "!")
+            print(self.name + " attacks " +  opponent + " high with a " + self.weapon + "!")
     
     def fire_pistol(self, opponent):
-        print(self.name + "fired a shot at " + opponent + "!")
-
+            print(self.name + "fired a shot at " + opponent + "!")
+        
+    def low_block(self, opponent):
+            print(self.name + " blocks " + opponent + " low with their " + self.weapon + "!")
+    
+    def high_block(self, opponent): 
+            print(self.name + " blocks " + opponent + " high with their " + self.weapon + "!")
+    
 
 def random_picker(list):
     return list[random.randint(0, len(list) - 1)]
@@ -74,16 +93,23 @@ def ninja_generator(name):
 def pirate_generator(name):
     return Pirate(name, random_picker(pirate_weapons), random_picker(pirate_ranks), random_picker(sizes))
 
-pirate_list = []
-ninja_list = []
+pirate_one = pirate_generator(random_picker(pirate_names))
+ninja_one = ninja_generator(random_picker(ninja_names))
 
-while len(pirate_list) < 10 and len(ninja_list) < 10:
-    for i in range(len(pirate_names)):
-        pirate_list.append(pirate_generator(pirate_names[i])) 
-    for j in range(len(ninja_names)):
-        ninja_list.append(ninja_generator(ninja_names[j]))
-    
 
-print(pirate_list)
-print(ninja_list)
+pirate_one.high_attack(ninja_one.name)
+ninja_one.high_block(pirate_one.name)
+ninja_one.low_attack(pirate_one.name)
+pirate_one.low_block(ninja_one.name)
+pirate_one.fire_pistol(ninja_one.name)
+ninja_one.throw_a_ninja_star(pirate_one.name)
+ninja_one.be_stealthy()
+pirate_one.say_pirate_stuff()
+
+
+
+
+
+
+
 
